@@ -1,10 +1,4 @@
-## WELCOME TO ( সহজ সরল সিম্পল ) ASSIGNMENT-006
 
-### 📅 Deadline For 60 marks: 9th September, 2025 (11:59 pm ⏱️)
-
-### 📅 Deadline For 50 marks : 13th September , 2025 (6:00 pm⏱️)
-
-### 📅 Deadline For 30 marks: Any time after 13the September , 2025 (6:01 pm⏱️).
 
 ---
 # Green Earth
@@ -87,13 +81,41 @@ https://openapi.programming-hero.com/api/plant/1
 
 #### 1) What is the difference between var, let, and const?
 
+---
+ans1:
+var is function scope and let and constant in block scope .
+let value is changeable in block scope but const is not change able.
+---
+
 #### 2) What is the difference between map(), forEach(), and filter()? 
+---
+Ans:
+
+mao()  return New array with transformed elements
+forEach() returns undefined
+filter()returns	New array with filtered elements
+---
 
 #### 3) What are arrow functions in ES6?
+---
+
+Ans3:
+Arrow functions provide a shorter syntax and don't have their own this, arguments, super, or new.target.
+---
 
 #### 4) How does destructuring assignment work in ES6?
 
+---
+Ans4:
+Destructuring allows extracting values from arrays or properties from objects into distinct variables.
+---
+
 #### 5) Explain template literals in ES6. How are they different from string concatenation?
+
+---
+Ans5:
+Template literals provide an easy way to create strings with embedded expressions and multi-line strings.
+---
 
 ## ⚙️ Functionalities 
 
