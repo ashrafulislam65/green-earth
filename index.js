@@ -23,7 +23,7 @@ const displayAllTrees = (trees)=>{
                                 alt="Shoes" />
                         </figure>
                         <div class="">
-                            <h2 class="font-bold text-xl py-2">
+                            <h2 onclick="loadTreeDetails(${trees.id})" class="font-bold text-xl py-2">
                                 ${trees.name}
                             </h2>
                             <p class="pb-2">${trees.description}</p>
@@ -63,6 +63,24 @@ const loadCategoryTree = (id)=>{
     });
 
 }
+const loadTreeDetails = (id)=>{
+    const url = `https://openapi.programming-hero.com/api/plant/${id}`;
+    fetch(url)
+    .then(res=>res.json())
+    .then(data=>displayTreeDetails(data.plants));
+}
+const displayTreeDetails = (tree)=>{
+     
+    const detailsContainer = document.getElementById('details-container');
+    detailsContainer.innerHTML = `
+        <h3 class="text-lg font-bold">${tree.name}</h3>
+        <img class="" src="${tree.image}" alt="">
+        <p class="font-bold ">Category: ${tree.category}</p>
+        <p class="font-semibold">Price: ${tree.price}</p>
+        <p class="py-4">Description: ${tree.description}</p>
+    `;
+    document.getElementById('my_modal_5').showModal();
+ }
 const displayCategoryTree = (trees)=>{
     
     const treeCardContainer = document.getElementById('tree-card-container');
@@ -77,9 +95,9 @@ const displayCategoryTree = (trees)=>{
                                 alt="Shoes" />
                         </figure>
                         <div class="">
-                            <h2 class="font-bold text-xl py-2">
+                            <button onclick="loadTreeDetails(${tree.id})" class="font-bold text-xl py-2">
                                 ${tree.name}
-                            </h2>
+                            </button>
                             <p class="pb-2">${tree.description}</p>
 
                             <div class="flex justify-between items-center">

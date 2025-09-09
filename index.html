@@ -76,14 +76,15 @@
             <div class="lg:flex justify-center lg:gap-7">
                 <div class="lg:w-[250px] lg:h-[479px] border-2 border-green-200 solid">
                     <h3 class="font-semibold text-xl pb-4">Categories</h3>
-                    
+
                     <div id="categories-container" class="">
-                     
-                        
+
+
                     </div>
                 </div>
-                <div id="tree-card-container" class="lg:grid grid-cols-3  lg:gap-1 lg:w-[800px]  border-2 border-yellow-200 solid">
-                    
+                <div id="tree-card-container"
+                    class="lg:grid grid-cols-3  lg:gap-1 lg:w-[800px]  border-2 border-yellow-200 solid">
+
                 </div>
                 <div class="lg:w-[200px] lg:h-[793.6px] bg-[#FFFFFF]  border-2 border-blue solid">
                     <h3 class="font-semibold text-xl px-4 py-4">Your Cart</h3>
@@ -175,6 +176,19 @@
                 </div>
             </div>
         </section>
+        <!-- Open the modal using ID.showModal() method -->
+        <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
+        <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+            <div class="modal-box lg:w-[600px] lg:h-[400px]">
+                <div id="details-container"></div>
+                <div class="modal-action">
+                    <form method="dialog">
+                        <!-- if there is a button in form, it will close the modal -->
+                        <button class="btn">Close</button>
+                    </form>
+                </div>
+            </div>
+        </dialog>
     </main>
     <footer>
         <footer class="footer sm:footer-horizontal footer-center bg-base-300 text-base-content bg-[#14532d] p-4">
