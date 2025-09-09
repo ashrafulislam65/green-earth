@@ -45,13 +45,22 @@ const displayAllTrees = (trees)=>{
 
 }
 loadAllTrees();
+const clearActiveBtn = ()=>{
+    const categoryBtns = document.querySelectorAll('.category-btn');
+    categoryBtns.forEach((btn)=> btn.classList.remove('bg-green-700', 'text-white'));
+}
 // load by click category
 const loadCategoryTree = (id)=>{
     
     const url = `https://openapi.programming-hero.com/api/category/${id}`;
     fetch(url)
     .then(res=>res.json())
-    .then(data=>displayCategoryTree(data.plants));
+    .then(data=>{
+        clearActiveBtn();
+        const clickBtn = document.getElementById(`category-btn-${id}`);
+        clickBtn.classList.add('bg-green-700', 'text-white');
+        displayCategoryTree(data.plants)
+    });
 
 }
 const displayCategoryTree = (trees)=>{
@@ -97,7 +106,7 @@ const displayCategories = (categories)=>{
         
         const categoryDiv = document.createElement('div');
         categoryDiv.innerHTML = `
-             <button onclick="loadCategoryTree(${category.id})" class="w-full  lg:w-[230px] lg:h-[35px] pl-4 rounded text-left bg-[#15803d] text-[#ffffff] mb-2">${category.category_name}</button>
+             <button id="category-btn-${category.id}" onclick="loadCategoryTree(${category.id})" class="w-full  lg:w-[230px] lg:h-[35px] pl-4 rounded text-left  mb-2 category-btn">${category.category_name}</button>
         `;
         
         categoriesContainer.append(categoryDiv);
