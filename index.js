@@ -3,6 +3,48 @@ const loadCategories = ()=>{
     .then(res=>res.json())
     .then(data=>displayCategories(data.categories));
 }
+// load all trees
+const loadAllTrees = ()=>{
+    const url = `https://openapi.programming-hero.com/api/plants`;
+    fetch(url)
+    .then(res=>res.json())
+    .then(data=>displayAllTrees(data.plants));
+}
+const displayAllTrees = (trees)=>{
+    const treeCardContainer = document.getElementById('tree-card-container');
+    treeCardContainer.innerHTML = "";
+    trees.forEach(trees => {
+        
+        const card = document.createElement('div');
+        card.innerHTML = `
+         <div class="card bg-base-100 w-full lg:w-[270px] lg:h-[500px] px-[10px] py-[10px] shadow-sm">
+                        <figure>
+                            <img src="${trees.image}"
+                                alt="Shoes" />
+                        </figure>
+                        <div class="">
+                            <h2 class="font-bold text-xl py-2">
+                                ${trees.name}
+                            </h2>
+                            <p class="pb-2">${trees.description}</p>
+
+                            <div class="flex justify-between items-center">
+                                <div class="badge mb-2 rounded-3xl bg-[#DCFCE7] text-[#15803D]">${trees.category}</div>
+                                <div class="font-bold text-lg pb-2">৳${trees.price}</div>
+                            </div>
+
+                            <div class="w-11/12 btn rounded-3xl bg-[#15803D] text-[#FFFFFF]">Add to Cart</div>
+
+
+                        </div>
+                    </div>
+        `;
+        treeCardContainer.append(card);
+        
+    });
+
+}
+loadAllTrees();
 // load by click category
 const loadCategoryTree = (id)=>{
     
@@ -17,7 +59,7 @@ const displayCategoryTree = (trees)=>{
     const treeCardContainer = document.getElementById('tree-card-container');
     treeCardContainer.innerHTML = "";
     trees.forEach(tree => {
-        console.log(tree);
+        
         const card = document.createElement('div');
         card.innerHTML = `
          <div class="card bg-base-100 w-full lg:w-[270px] lg:h-[500px] px-[10px] py-[10px] shadow-sm">
@@ -33,7 +75,7 @@ const displayCategoryTree = (trees)=>{
 
                             <div class="flex justify-between items-center">
                                 <div class="badge mb-2 rounded-3xl bg-[#DCFCE7] text-[#15803D]">${tree.category}</div>
-                                <div class="font-bold text-lg pb-2">"৳${tree.price}"</div>
+                                <div class="font-bold text-lg pb-2">৳${tree.price}</div>
                             </div>
 
                             <div class="w-11/12 btn rounded-3xl bg-[#15803D] text-[#FFFFFF]">Add to Cart</div>
