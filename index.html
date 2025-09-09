@@ -71,9 +71,9 @@
     </header>
     <main>
         <!-- spinner -->
-         <section id="spinner" class="hidden bg-[#f0fdf4] flex justify-center items-center py-10">
+        <section id="spinner" class="hidden bg-[#f0fdf4] flex justify-center items-center py-10">
             <span class="loading loading-bars loading-xl"></span>
-         </section>
+        </section>
         <!-- choose your tree -->
         <section class="bg-[#f0fdf4]">
             <h1 class="text-center font-bold text-2xl lg:pt-[100px] lg:pb-[40px]">Choose Your Trees</h1>
@@ -92,13 +92,19 @@
                 </div>
                 <div class="lg:w-[200px] lg:h-[793.6px] bg-[#FFFFFF]  border-2 border-blue solid">
                     <h3 class="font-semibold text-xl px-4 py-4">Your Cart</h3>
-                    <div class="flex justify-around lg:w-[180px] my-2 mx-2 lg:h-[64px] bg-[#f0fdf4] items-center">
-                        <div>
-                            <h5 class="font-semibold text-small">Mango Time</h5>
-                            <p>৳500 x 1</p>
-                        </div>
-                        <i class="fa-solid fa-xmark"></i>
+                    <div id="cart-container"
+                        class="  ">
+                        
                     </div>
+
+                    <div>
+                        <div class="divider"></div>
+                        <div class="flex justify-between">
+                            <p class="font-semibold">Total:</p>
+                            <p id="total-price" class="font-semibold">0</p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>

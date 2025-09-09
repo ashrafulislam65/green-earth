@@ -3,6 +3,9 @@ const loadCategories = ()=>{
     .then(res=>res.json())
     .then(data=>displayCategories(data.categories));
 }
+// Cart array to store items
+let cart = [];
+let totalPrice = 0;
 // manage spinner
 const manageSpinner = (status)=>{
     if(status==true){
@@ -46,7 +49,7 @@ const displayAllTrees = (trees)=>{
                                 <div class="font-bold text-lg pb-2">৳${trees.price}</div>
                             </div>
 
-                            <div class="w-11/12 btn rounded-3xl bg-[#15803D] text-[#FFFFFF]">Add to Cart</div>
+                            <div onclick="addToCart(${trees.id})" class="w-11/12 btn rounded-3xl bg-[#15803D] text-[#FFFFFF]">Add to Cart</div>
 
 
                         </div>
@@ -77,6 +80,77 @@ const loadCategoryTree = (id)=>{
     });
 
 }
+// Add to cart
+const addToCart = (id) => {
+    const url = `https://openapi.programming-hero.com/api/plant/${id}`;
+    fetch(url)
+    .then(res => res.json())
+    .then(data => {
+        const plant = data.plants;
+        
+        // Check if plant already exists in cart
+        const existingItem = cart.find(item => item.id === plant.id);
+        
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            cart.push({
+                id: plant.id,
+                name: plant.name,
+                price: parseInt(plant.price),
+                quantity: 1,
+                image: plant.image
+            });
+        }
+        
+        updateCartDisplay();
+        updateTotalPrice();
+    });
+}
+// Remove from cart
+const removeFromCart = (id) => {
+    const itemIndex = cart.findIndex(item => item.id === id);
+    if (itemIndex > -1) {
+        cart.splice(itemIndex, 1);
+        updateCartDisplay();
+        updateTotalPrice();
+    }
+}
+
+// Update cart display
+const updateCartDisplay = () => {
+    const cartContainer = document.getElementById('cart-container');
+    cartContainer.innerHTML = "";
+    
+    if (cart.length === 0) {
+        cartContainer.innerHTML = '<p class="text-gray-500">Your cart is empty</p>';
+        return;
+    }
+    
+    cart.forEach(item => {
+        const cartItem = document.createElement('div');
+        cartItem.className = "flex justify-between items-center lg:w-[180px] my-2 mx-2 lg:h-[64px] bg-[#f0fdf4] items-center p-2 rounded";
+        cartItem.innerHTML = `
+           <div class="flex justify-around items-center lg:w-[180px] my-2 mx-2 lg:h-[64px] bg-[#f0fdf4]">
+                 <div>
+                <h5 class="font-semibold text-small">${item.name}</h5>
+                <p>৳${item.price} x ${item.quantity}</p>
+            </div>
+            <button onclick="removeFromCart(${item.id})" class="text-red-500 hover:text-red-700">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+           </div>
+        `;
+        cartContainer.appendChild(cartItem);
+        // 
+    });
+}
+// Update total price
+const updateTotalPrice = () => {
+    totalPrice = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+    document.getElementById('total-price').textContent = totalPrice;
+}
+// 
 const loadTreeDetails = (id)=>{
     const url = `https://openapi.programming-hero.com/api/plant/${id}`;
     fetch(url)
@@ -119,7 +193,7 @@ const displayCategoryTree = (trees)=>{
                                 <div class="font-bold text-lg pb-2">৳${tree.price}</div>
                             </div>
 
-                            <div class="w-11/12 btn rounded-3xl bg-[#15803D] text-[#FFFFFF]">Add to Cart</div>
+                            <div onclick="addToCart(${tree.id})" class="w-11/12 btn rounded-3xl bg-[#15803D] text-[#FFFFFF]">Add to Cart</div>
 
 
                         </div>
@@ -147,3 +221,5 @@ const displayCategories = (categories)=>{
     }
 }
 loadCategories();
+updateCartDisplay();
+updateTotalPrice();
