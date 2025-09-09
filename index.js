@@ -3,6 +3,19 @@ const loadCategories = ()=>{
     .then(res=>res.json())
     .then(data=>displayCategories(data.categories));
 }
+// manage spinner
+const manageSpinner = (status)=>{
+    if(status==true){
+        document.getElementById('spinner').classList.remove('hidden');
+        document.getElementById('tree-card-container').classList.add('hidden');
+
+    }
+    else{
+        document.getElementById('spinner').classList.add('hidden');
+        document.getElementById('tree-card-container').classList.remove('hidden');
+    }
+
+}
 // load all trees
 const loadAllTrees = ()=>{
     const url = `https://openapi.programming-hero.com/api/plants`;
@@ -51,6 +64,7 @@ const clearActiveBtn = ()=>{
 }
 // load by click category
 const loadCategoryTree = (id)=>{
+    manageSpinner(true);
     
     const url = `https://openapi.programming-hero.com/api/category/${id}`;
     fetch(url)
@@ -114,6 +128,7 @@ const displayCategoryTree = (trees)=>{
         treeCardContainer.append(card);
         
     });
+    manageSpinner(false);
 
 }
 const displayCategories = (categories)=>{
