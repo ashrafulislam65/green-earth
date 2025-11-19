@@ -185,7 +185,7 @@ Clicking a tree name on a card opens a modal with full tree details.
 
 
 ## 🔗 Submission
-- **Live Link :** YOUR_DEPLOYED_URL_HERE  
+- **Live Link :** https://heroic-kleicha-be3a01.netlify.app/  
 - **GitHub Private Repository:** YOUR_REPO_URL_HERE  
 
 ---
